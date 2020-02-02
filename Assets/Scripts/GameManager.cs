@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
                 player.SetupSimulate(stationary, x,y);
                 Vector2Int newPlayerPos = player.Simulate();
-                             //Vases can be  
+                             //Vases can be
                 foreach(Stationary entity in stationary)
                 {
                     if(entity.pos.Equals(new Vector2Int(closestX,closestY)))
@@ -83,6 +83,13 @@ public class GameManager : MonoBehaviour
                                 stationary.Find(s => s.GetComponent<Stationary>().type == StationaryType.Exit).Interact();
                             }
 
+                            //alert all cats, toggle active
+                            foreach(Moving cat in moving){
+                                if(!cat.active){
+                                    cat.active = true;
+                                }
+                                cat.SwitchImages();
+                            }
                             //TODO collect key
                         }
                         else if (entity.type == StationaryType.Exit)
@@ -94,7 +101,7 @@ public class GameManager : MonoBehaviour
                             }              
                         }
                         //Based on Type of stationary INteract has different effects;
-                    }     
+                    }
                 }
 
                 //Assuming no Overlap between moving entities
@@ -144,6 +151,7 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     FindObjectOfType<GridObject>().numMoves--;
+                    Debug.Log("Moves Left: " + FindObjectOfType<GridObject>().numMoves);
                     player.Move(grid,newPlayerPos);
                 }
             }

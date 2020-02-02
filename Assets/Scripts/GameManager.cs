@@ -77,12 +77,21 @@ public class GameManager : MonoBehaviour
                         else if (entity.type == StationaryType.Vase)
                         {
                             entity.Interact();
+                            FindObjectOfType<GridObject>().numPickups += 1;
+                            if(FindObjectOfType<GridObject>().numPickups == FindObjectOfType<GridObject>().maxNumPickups)
+                            {
+                                stationary.Find(s => s.GetComponent<Stationary>().type == StationaryType.Exit).Interact();
+                            }
+
                             //TODO collect key
                         }
                         else if (entity.type == StationaryType.Exit)
                         {
-                            Debug.Log("WOn "+entity);
-                            gameWon = true;
+                            if(FindObjectOfType<GridObject>().numPickups == FindObjectOfType<GridObject>().maxNumPickups)
+                            {
+                                Debug.Log("WOn "+entity);
+                                gameWon = true;
+                            }              
                         }
                         //Based on Type of stationary INteract has different effects;
                     }     

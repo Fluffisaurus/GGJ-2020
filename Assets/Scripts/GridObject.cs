@@ -9,8 +9,8 @@ public class GridObject : MonoBehaviour
     
     public string levelName;
     public int numMoves;
-
-
+    public int maxNumPickups;
+    public int numPickups;
     
     public GameObject[] stationaryObj; // Vase, Table, Wall, Exit
     public GameObject vase;
@@ -25,7 +25,7 @@ public class GridObject : MonoBehaviour
 
     public void LoadGrid(string levelName)
     {
- char[] seps = {',', '\n'};
+        char[] seps = {',', '\n'};
         String[] data = File.ReadAllText("Assets/Resources/"+levelName+ ".txt").Split(seps);
         size = (int)Math.Sqrt(data.Length);
         String[,] symbols = new String[size, size];
@@ -108,6 +108,7 @@ public class GridObject : MonoBehaviour
                         currObj.GetComponent<Stationary>().interactable = true;
                         currObj.GetComponent<Stationary>().passable = false;
                         currObj.GetComponent<Stationary>().type = StationaryType.Vase;
+                        maxNumPickups+= 1;
                         break;
                     case "T":
                         currObj = Instantiate(table, Vector3.zero, Quaternion.identity);

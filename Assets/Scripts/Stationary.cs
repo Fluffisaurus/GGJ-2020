@@ -12,6 +12,9 @@ public class Stationary : Entity
 
     public Sprite[] vaseImgs;
 
+    public Sprite[] exitImgs;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +43,11 @@ public class Stationary : Entity
         {
             //TODO vase destroyed here
         }
-
+        if(type == StationaryType.Exit)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = exitImgs[1];
+        }
+ 
     }
 
 

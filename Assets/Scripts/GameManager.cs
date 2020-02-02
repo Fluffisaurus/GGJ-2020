@@ -120,7 +120,6 @@ public class GameManager : MonoBehaviour
                 }
                 //TODO handle # of moves, if exceeded, gameOver = true
 
-
                 if(gameWon)
                 {
                     GameWon();

@@ -35,7 +35,7 @@ public class GridObject : MonoBehaviour
         for (int k = 0; k < symbols.GetLength(0); k++){
             for (int l = 0; l < symbols.GetLength(1); l++){
                 symbols[l, k] = data[k*size+l];
-                //Debug.Log(symbols[k,l]);
+                Debug.Log(symbols[l,k]);
             }
         }
 
@@ -63,7 +63,7 @@ public class GridObject : MonoBehaviour
                     case "CAN":
                         currObj = Instantiate(movingObj, Vector3.zero, Quaternion.identity);
                         currObj.GetComponent<Moving>().active = true;
-                        currObj.GetComponent<Moving>().direction = Vector2Int.up;
+                        currObj.GetComponent<Moving>().direction = Vector2Int.down;
                         break;
                     case "CAE":
                         currObj = Instantiate(movingObj, Vector3.zero, Quaternion.identity);
@@ -73,7 +73,7 @@ public class GridObject : MonoBehaviour
                     case "CAS":
                         currObj = Instantiate(movingObj, Vector3.zero, Quaternion.identity);
                         currObj.GetComponent<Moving>().active = true;
-                        currObj.GetComponent<Moving>().direction = Vector2Int.down;
+                        currObj.GetComponent<Moving>().direction = Vector2Int.up;
                         break;
                     case "CAW": // Cat-Sleeping-Down
                         currObj = Instantiate(movingObj, Vector3.zero, Quaternion.identity);
@@ -107,21 +107,25 @@ public class GridObject : MonoBehaviour
                         currObj = Instantiate(vase, Vector3.zero, Quaternion.identity);
                         currObj.GetComponent<Stationary>().interactable = true;
                         currObj.GetComponent<Stationary>().passable = false;
+                        currObj.GetComponent<Stationary>().type = StationaryType.Vase;
                         break;
                     case "T":
                         currObj = Instantiate(table, Vector3.zero, Quaternion.identity);
                         currObj.GetComponent<Stationary>().interactable = true;
                         currObj.GetComponent<Stationary>().passable = false;
+                        currObj.GetComponent<Stationary>().type = StationaryType.Table;
                         break;
                     case "W":
                         currObj = Instantiate(wall, Vector3.zero, Quaternion.identity);
                         currObj.GetComponent<Stationary>().interactable = false;
                         currObj.GetComponent<Stationary>().passable = false;
+                        currObj.GetComponent<Stationary>().type = StationaryType.Wall;
                         break;
                     case "E":
                         currObj = Instantiate(exit, Vector3.zero, Quaternion.identity);
                         currObj.GetComponent<Stationary>().interactable = true;
                         currObj.GetComponent<Stationary>().passable = true;
+                        currObj.GetComponent<Stationary>().type = StationaryType.Exit;
                         break;
                     case "N": //null
                         break;

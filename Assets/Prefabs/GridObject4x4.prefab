@@ -183,14 +183,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020c05ee82d654647938cc7ecb286113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objs:
-  - {fileID: 3656647457662659560, guid: e05e313c0e7bacf4e85f1740ca662e12, type: 3}
-  - {fileID: 6291774371467161439, guid: 8ac049747cb313e4491fc890fcf3a560, type: 3}
-  - {fileID: 390605359256857398, guid: 2f3c13bd4eaadac43b682df9aef24653, type: 3}
-  - {fileID: 762103967124891326, guid: cde830d7f70947f4cb4d44dbc60c56df, type: 3}
+  stationaryObj:
   - {fileID: 256761273826736808, guid: 706a0225c99d92649990c17105d9c1b1, type: 3}
+  - {fileID: 762103967124891326, guid: cde830d7f70947f4cb4d44dbc60c56df, type: 3}
   - {fileID: 3507319999647115773, guid: 2c6c376a80e8e85448218c1cddad9996, type: 3}
-  - {fileID: 3507319999647115773, guid: 2c6c376a80e8e85448218c1cddad9996, type: 3}
+  - {fileID: 6291774371467161439, guid: 8ac049747cb313e4491fc890fcf3a560, type: 3}
+  vase: {fileID: 256761273826736808, guid: 706a0225c99d92649990c17105d9c1b1, type: 3}
+  table: {fileID: 762103967124891326, guid: cde830d7f70947f4cb4d44dbc60c56df, type: 3}
+  wall: {fileID: 3507319999647115773, guid: 2c6c376a80e8e85448218c1cddad9996, type: 3}
+  exit: {fileID: 6291774371467161439, guid: 8ac049747cb313e4491fc890fcf3a560, type: 3}
+  player: {fileID: 390605359256857398, guid: 2f3c13bd4eaadac43b682df9aef24653, type: 3}
+  movingObj: {fileID: 3656647457662659560, guid: e05e313c0e7bacf4e85f1740ca662e12,
+    type: 3}
+  size: 0
 --- !u!1001 &9166126838209708070
 PrefabInstance:
   m_ObjectHideFlags: 0

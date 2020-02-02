@@ -31,9 +31,10 @@ public class Player : Entity
             gameObject.GetComponent<SpriteRenderer>().sprite = rat_imgs[3];
         }
     }
+    
     internal override Vector2Int Simulate()
     {
-        int size = GridObject.i.size;
+        int size = FindObjectOfType<GridObject>().size;
         Vector2Int newPos =  pos + direction;
         
         if(newPos.x < 0 || newPos.x >= size || newPos.y < 0 || newPos.y >= size)

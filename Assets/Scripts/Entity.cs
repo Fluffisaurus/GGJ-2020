@@ -13,11 +13,9 @@ public class Entity : MonoBehaviour
     }
     virtual internal void Move(GameObject[,] grid, Vector2Int newPos)
     {
-        Debug.Log(this.gameObject.transform.localPosition + " before");
         this.gameObject.transform.parent = grid[newPos.y,newPos.x].transform;
         //this.gameObject.transform.localPosition = Vector3.zero;
         this.gameObject.transform.DOLocalMove(Vector3.zero,1f);
-
         this.pos = newPos;
 
     }

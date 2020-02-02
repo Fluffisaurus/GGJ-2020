@@ -10,21 +10,23 @@ public class Moving : Entity
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (active) 
+        {
+            if(direction.x == 1 && direction.y == 0) {
+                gameObject.GetComponent<SpriteRenderer>().sprite = cat_imgs[1];
+            }
+            else if(direction.x == -1 && direction.y == 0) {
+                gameObject.GetComponent<SpriteRenderer>().sprite = cat_imgs[2];
+            }
+            else if(direction.x == 0 && direction.y == 1) {
+                gameObject.GetComponent<SpriteRenderer>().sprite = cat_imgs[3];
+            }  
+            else if(direction.x == 0 && direction.y == -1) {
+                gameObject.GetComponent<SpriteRenderer>().sprite = cat_imgs[0];
+            }
+        }
     }
-    if (active) {
-        if(direction.x == 1 && direction.y == 0) {
-            gameObject.GetComponent<SpriteRenderer>().sprite = cat_imgs[1];
-        }
-        else if(direction.x == -1 && direction.y == 0) {
-            gameObject.GetComponent<SpriteRenderer>().sprite = cat_imgs[2];
-        }
-        else if(direction.x == 0 && direction.y == 1) {
-            gameObject.GetComponent<SpriteRenderer>().sprite = cat_imgs[3];
-        }  
-        else if(direction.x == 0 && direction.y == -1) {
-            gameObject.GetComponent<SpriteRenderer>().sprite = cat_imgs[0];
-        }
+
     
     internal void SwitchDirection()
     {
@@ -33,7 +35,7 @@ public class Moving : Entity
     }
     internal override Vector2Int Simulate()
     {
-        int size = GridObject.i.size;
+        int size = FindObjectOfType<GridObject>().size;
         Vector2Int newPos =  pos + direction;
         if(newPos.x < 0 || newPos.x >= size || newPos.y < 0 || newPos.y >= size)
         {

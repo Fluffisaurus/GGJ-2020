@@ -38,7 +38,7 @@ public class GridObject : MonoBehaviour
         for (int k = 0; k < symbols.GetLength(0); k++){
             for (int l = 0; l < symbols.GetLength(1); l++){
                 symbols[l, k] = data[k*size+l];
-                Debug.Log(symbols[l,k]);
+                // Debug.Log(symbols[l,k]);
             }
         }
 

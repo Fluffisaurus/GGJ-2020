@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         float closestDistance = float.MaxValue;
         List<Tuple> nearby = GetNearCells(grid,player);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
+
         foreach(Tuple tuple in nearby)
         {
             //Debug.Log(entity);
@@ -43,21 +43,21 @@ public class GameManager : MonoBehaviour
                 closestY = tuple.y;
             }
         }
-  
-        
+
+
        // if(waitingTime <= 0)
         {
             waitingTime = 0.3f;
             Vector2Int diffPos = new Vector2Int(closestY, closestX) - player.pos ;
             int x = diffPos.x;
             int y = diffPos.y;
-            
+
             if(Input.GetMouseButtonDown(0))
-            {     
+            {
                 bool gameOver = false;
                 bool gameWon = false;
 
-                //Vases can be  
+                //Vases can be
                 foreach(Stationary entity in stationary)
                 {
                     //Mouse trap
@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
                     }
                     else if (entity.type == StationaryType.Exit)
                     {
+                        Debug.Log(entity.type);
                         gameWon = true;
                     }
                     //Based on Type of stationary INteract has different effects;
@@ -124,14 +125,14 @@ public class GameManager : MonoBehaviour
                 }
                 else if(gameOver)
                 {
-                      GameOver();           
+                      GameOver();
                 }
                 else
                 {
                     player.Move(grid,newPlayerPos);
                 }
             }
-          
+
         }
       //  else
         {
@@ -141,8 +142,8 @@ public class GameManager : MonoBehaviour
 
         if(closest)
         {
-            closest.transform.localPosition = 
-            new Vector3(closest.transform.localPosition.x, 
+            closest.transform.localPosition =
+            new Vector3(closest.transform.localPosition.x,
             closest.transform.localPosition.y + 0.01f * dir,
             closest.transform.localPosition.z );
 
@@ -150,7 +151,7 @@ public class GameManager : MonoBehaviour
 
         }
     }
-    
+
     int dir = 1;
     private int GetX()
     {
@@ -171,7 +172,7 @@ public class GameManager : MonoBehaviour
         return x;
     }
     private int GetY(){
-        float dirY = Input.GetAxis("Vertical");       
+        float dirY = Input.GetAxis("Vertical");
         int y = 0;
         if(dirY > 0)
         {
@@ -187,7 +188,7 @@ public class GameManager : MonoBehaviour
         }
         return y;
     }
-         
+
     void GameOver()
     {
         Debug.Log("Game Over");

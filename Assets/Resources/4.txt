@@ -1,0 +1,5 @@
+N,N,W,W
+N,N,R,N
+N,N,N,N
+E,CAE,N,V
+ 

@@ -63,8 +63,11 @@ public class GameManager : MonoBehaviour
                              //Vases can be
                 foreach(Stationary entity in stationary)
                 {
-                    if(entity.pos.Equals(new Vector2Int(closestX,closestY)))
+                    Debug.Log(entity.type + " "+ entity.pos + " "+  new Vector2Int(closestX,closestY));
+                    if(entity.pos.Equals(new Vector2Int(closestY,closestX)))
                     {
+                        Debug.Log(entity.type);
+
                         //Mouse trap
                         if(entity.type == StationaryType.Wall)
                         {
@@ -77,8 +80,8 @@ public class GameManager : MonoBehaviour
                         else if (entity.type == StationaryType.Vase)
                         {
                             entity.Interact();
-                            FindObjectOfType<GridObject>().numPickups += 1;
-                            if(FindObjectOfType<GridObject>().numPickups == FindObjectOfType<GridObject>().maxNumPickups)
+                            gridObject.numPickups += 1;
+                            if(gridObject.numPickups >= gridObject.maxNumPickups)
                             {
                                 stationary.Find(s => s.GetComponent<Stationary>().type == StationaryType.Exit).Interact();
                             }
@@ -94,7 +97,8 @@ public class GameManager : MonoBehaviour
                         }
                         else if (entity.type == StationaryType.Exit)
                         {
-                            if(FindObjectOfType<GridObject>().numPickups == FindObjectOfType<GridObject>().maxNumPickups)
+                            Debug.Log("Exiting");
+                            if(gridObject.numPickups >= gridObject.maxNumPickups)
                             {
                                 Debug.Log("WOn "+entity);
                                 gameWon = true;

@@ -3,21 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
+using UnityEngine.Assertions;
 
 public class GridObject : MonoBehaviour
 {
-
     public string levelName;
     public int numMoves;
-<<<<<<< HEAD
     public int maxNumPickups;
     public int numPickups;
     
-=======
-
-
-
->>>>>>> 9ab35b7f244b7fc811e8e0f46f8721c88db3c0a3
     public GameObject[] stationaryObj; // Vase, Table, Wall, Exit
     public GameObject vase;
     public GameObject table;
@@ -178,6 +172,7 @@ public class GridObject : MonoBehaviour
     void Start()
     {
         LoadGrid(levelName);
+        Assert.IsTrue(numMoves > 0);
     }
 
     // Update is called once per frame

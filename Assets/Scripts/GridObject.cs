@@ -110,21 +110,25 @@ public class GridObject : MonoBehaviour
                         currObj = Instantiate(vase, Vector3.zero, Quaternion.identity);
                         currObj.GetComponent<Stationary>().interactable = true;
                         currObj.GetComponent<Stationary>().passable = false;
+                        currObj.GetComponent<Stationary>().type = StationaryType.Vase;
                         break;
                     case "T":
                         currObj = Instantiate(table, Vector3.zero, Quaternion.identity);
                         currObj.GetComponent<Stationary>().interactable = true;
                         currObj.GetComponent<Stationary>().passable = false;
+                        currObj.GetComponent<Stationary>().type = StationaryType.Table;
                         break;
                     case "W":
                         currObj = Instantiate(wall, Vector3.zero, Quaternion.identity);
                         currObj.GetComponent<Stationary>().interactable = false;
                         currObj.GetComponent<Stationary>().passable = false;
+                        currObj.GetComponent<Stationary>().type = StationaryType.Wall;
                         break;
                     case "E":
                         currObj = Instantiate(exit, Vector3.zero, Quaternion.identity);
                         currObj.GetComponent<Stationary>().interactable = true;
                         currObj.GetComponent<Stationary>().passable = true;
+                        currObj.GetComponent<Stationary>().type = StationaryType.Exit;
                         break;
                     case "N": //null
                         break;

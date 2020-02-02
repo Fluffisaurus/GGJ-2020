@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     List<Moving> moving;
     void Start()
     {
-        gridObject = GridObject.i;
+        gridObject = FindObjectOfType<GridObject>();
         grid = gridObject.Grid();
         entities = gridObject.GetEntities();
         player = entities.Find( e => e.GetComponent<Player>()).GetComponent<Player>();
@@ -115,9 +115,11 @@ public class GameManager : MonoBehaviour
                         movingEntity.Move(grid, newPos);
                     }
                 }
-
+                if(FindObjectOfType<GridObject>().numMoves == 0)
+                {
+                    gameOver = true;
+                }
                 //TODO handle # of moves, if exceeded, gameOver = true
-
 
                 if(gameWon)
                 {
@@ -125,10 +127,11 @@ public class GameManager : MonoBehaviour
                 }
                 else if(gameOver)
                 {
-                      GameOver();
+                    GameOver();
                 }
                 else
                 {
+                    FindObjectOfType<GridObject>().numMoves--;
                     player.Move(grid,newPlayerPos);
                 }
             }
@@ -142,6 +145,7 @@ public class GameManager : MonoBehaviour
 
         if(closest)
         {
+            //TODO adjust logic for showing interactable tile
             closest.transform.localPosition =
             new Vector3(closest.transform.localPosition.x,
             closest.transform.localPosition.y + 0.01f * dir,
@@ -189,17 +193,30 @@ public class GameManager : MonoBehaviour
         return y;
     }
 
-    void GameOver()
+    public void Reset()
+    {
+        SceneChanger.i.RestartLevel();
+
+    }
+    public void GameOver()
     {
         Debug.Log("Game Over");
+        SceneChanger.i.RestartLevel();
     }
-    void GameWon()
+
+    public void GameWon()
     {
         Debug.Log("Game WON :)");
+        SceneChanger.i.LoadNextLevel();
     }
+    public void ToMainMenu()
+    {
+        SceneChanger.i.LoadMainMenu();
+    }
+
     List<Tuple> GetNearCells(GameObject[,] grid, Player p)
     {
-         int size = GridObject.i.size;
+         int size = FindObjectOfType<GridObject>().size;
         List<Tuple> nearby = new List<Tuple>();
         int y = p.pos.x;
         int x = p.pos.y;

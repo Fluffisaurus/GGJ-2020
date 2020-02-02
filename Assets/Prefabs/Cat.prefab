@@ -102,3 +102,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2cfb803e8222d4bd387885079ef2a698, type: 3}
   - {fileID: 21300000, guid: 2bc70fcff49e741c49878c606710f3c8, type: 3}
   - {fileID: 21300000, guid: 007a83b66fbe74ae18036c26b3e02be2, type: 3}
+  CatImgsSleep:
+  - {fileID: 21300000, guid: 235ef0a7f6da8407f8a46e019f5477a4, type: 3}
+  - {fileID: 21300000, guid: 2cfb803e8222d4bd387885079ef2a698, type: 3}
+  - {fileID: 21300000, guid: 2bc70fcff49e741c49878c606710f3c8, type: 3}
+  - {fileID: 21300000, guid: a40cff64d8cc348fbb964d94270131bf, type: 3}

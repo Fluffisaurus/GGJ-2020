@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         float closestDistance = float.MaxValue;
         List<Tuple> nearby = GetNearCells(grid,player);
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
+
         foreach(Tuple tuple in nearby)
         {
             //Debug.Log(entity);
@@ -43,16 +43,17 @@ public class GameManager : MonoBehaviour
                 closestY = tuple.y;
             }
         }
-        
+
+
        // if(waitingTime <= 0)
         {
             waitingTime = 0.3f;
             Vector2Int diffPos = new Vector2Int(closestY, closestX) - player.pos ;
             int x = diffPos.x;
             int y = diffPos.y;
-            
+
             if(Input.GetMouseButtonDown(0))
-            {     
+            {
                 bool gameOver = false;
                 bool gameWon = false;
 
@@ -129,7 +130,7 @@ public class GameManager : MonoBehaviour
                 }
                 else if(gameOver)
                 {
-                    GameOver();           
+                    GameOver();
                 }
                 else
                 {
@@ -137,7 +138,7 @@ public class GameManager : MonoBehaviour
                     player.Move(grid,newPlayerPos);
                 }
             }
-          
+
         }
       //  else
         {
@@ -148,8 +149,8 @@ public class GameManager : MonoBehaviour
         if(closest)
         {
             //TODO adjust logic for showing interactable tile
-            closest.transform.localPosition = 
-            new Vector3(closest.transform.localPosition.x, 
+            closest.transform.localPosition =
+            new Vector3(closest.transform.localPosition.x,
             closest.transform.localPosition.y + 0.01f * dir,
             closest.transform.localPosition.z );
 
@@ -157,7 +158,7 @@ public class GameManager : MonoBehaviour
 
         }
     }
-    
+
     int dir = 1;
     private int GetX()
     {
@@ -178,7 +179,7 @@ public class GameManager : MonoBehaviour
         return x;
     }
     private int GetY(){
-        float dirY = Input.GetAxis("Vertical");       
+        float dirY = Input.GetAxis("Vertical");
         int y = 0;
         if(dirY > 0)
         {
@@ -194,11 +195,11 @@ public class GameManager : MonoBehaviour
         }
         return y;
     }
-         
+
     public void Reset()
     {
         SceneChanger.i.RestartLevel();
-  
+
     }
     public void GameOver()
     {

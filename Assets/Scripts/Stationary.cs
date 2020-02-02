@@ -39,6 +39,13 @@ public class Stationary : Entity
         if(type == StationaryType.Vase)
         {
             //TODO vase destroyed here
+            if(interactable){
+                interactable = false;
+                gameObject.GetComponent<SpriteRenderer>().sprite = vaseImgs[1];
+            } else {
+                interactable = true;
+                gameObject.GetComponent<SpriteRenderer>().sprite = vaseImgs[0];
+            }
         }
 
     }

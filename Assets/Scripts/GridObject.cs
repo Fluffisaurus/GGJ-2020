@@ -6,12 +6,12 @@ using System;
 
 public class GridObject : MonoBehaviour
 {
-    
+
     public string levelName;
     public int numMoves;
 
 
-    
+
     public GameObject[] stationaryObj; // Vase, Table, Wall, Exit
     public GameObject vase;
     public GameObject table;

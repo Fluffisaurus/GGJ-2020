@@ -6,6 +6,7 @@ public class GridObject : MonoBehaviour
 {
     public GameObject stationary;
     public GameObject player;
+    public GameObject moving;
     public static GridObject i;
     void Awake(){
         if(!i){
@@ -25,7 +26,7 @@ public class GridObject : MonoBehaviour
             for (int l = 0; l < grid.GetLength(1); l++){
                 grid[k, l] = transform.GetChild(k).GetChild(l).gameObject;
 
-                Debug.Log(k + " "+l + transform.GetChild(k).GetChild(l));
+             //  Debug.Log(k + " "+l + " " + transform.GetChild(k) + " "+transform.GetChild(k).GetChild(l));
                 // Debug.Log(curr);
             }
         }
@@ -34,11 +35,21 @@ public class GridObject : MonoBehaviour
         GameObject stationaryObj = Instantiate(stationary, Vector3.zero, Quaternion.identity);
         stationaryObj.transform.parent = grid[1,1].transform;
         stationaryObj.transform.localPosition = Vector3.zero;
+        stationaryObj.GetComponent<Entity>().pos  = new Vector2Int(1,1);
 
         //AHMED For Testing!
         GameObject playerObj = Instantiate(player, Vector3.zero, Quaternion.identity);
         playerObj.transform.parent = grid[3,1].transform;
         playerObj.transform.localPosition = Vector3.zero;
+        playerObj.GetComponent<Entity>().pos  = new Vector2Int(1,3);
+
+        //AHMED For Testing!
+        GameObject movingObj = Instantiate(moving, Vector3.zero, Quaternion.identity);
+        movingObj.transform.parent = grid[2,0].transform;
+        movingObj.transform.localPosition = Vector3.zero;
+        movingObj.GetComponent<Moving>().active = true;
+        movingObj.GetComponent<Moving>().direction = Vector2Int.up;
+        movingObj.GetComponent<Moving>().pos  = new Vector2Int(0,2);
 
     }
 
@@ -59,7 +70,7 @@ public class GridObject : MonoBehaviour
                     foreach (Transform child in grid[k, l].transform) 
                     {
                             entities.Add(child.gameObject);
-                            break; //Asumming a single child under each child 
+                           // break; //Asumming a single child under each child 
                     }
                 }
             }

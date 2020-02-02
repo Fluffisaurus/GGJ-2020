@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stationary : MonoBehaviour
+public class Stationary : Entity
 {
     private bool interactable;
     private bool passable;
-
-    private Vector2 pos;
 
     // Start is called before the first frame update
     void Start()
@@ -41,10 +39,7 @@ public class Stationary : MonoBehaviour
         }
 
     }
-    public Vector2 Step()
-    {
-        return pos;
-    }
+  
     
 
 }

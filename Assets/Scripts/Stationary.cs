@@ -6,7 +6,8 @@ public class Stationary : Entity
 {
     private bool interactable;
     private bool passable;
-
+    public StationaryType type;
+   
     // Start is called before the first frame update
     void Start()
     {

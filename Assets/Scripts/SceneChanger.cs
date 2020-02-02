@@ -21,11 +21,20 @@ public class SceneChanger : MonoBehaviour
     }
 
     public int current = 0;
-    public int[] levels = {1,2,3,4,5,6,7,8,9};
+    public int[] levels = {1,2,3,4,5,6};
     public void LoadNextLevel()
     {
         current += 1;
-        SceneManager.LoadScene ("level_"+current);
+        if(current > levels.Length)
+        {
+            SceneManager.LoadScene ("Final");
+        }
+        else
+        {
+            SceneManager.LoadScene ("level_"+current);
+        }
+        
+
     }
     public void RestartLevel()
     {

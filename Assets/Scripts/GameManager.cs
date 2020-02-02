@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
                 closestY = tuple.y;
             }
         }
-  
         
        // if(waitingTime <= 0)
         {
@@ -57,32 +56,36 @@ public class GameManager : MonoBehaviour
                 bool gameOver = false;
                 bool gameWon = false;
 
-                //Vases can be  
-                foreach(Stationary entity in stationary)
-                {
-                    //Mouse trap
-                    if(entity.type == StationaryType.Wall)
-                    {
-                        gameOver = true;
-                    }
-                    else if (entity.type == StationaryType.Table)
-                    {
-                        entity.Interact();
-                    }
-                    else if (entity.type == StationaryType.Vase)
-                    {
-                        entity.Interact();
-                        //TODO collect key
-                    }
-                    else if (entity.type == StationaryType.Exit)
-                    {
-                        gameWon = true;
-                    }
-                    //Based on Type of stationary INteract has different effects;
-                }
 
                 player.SetupSimulate(stationary, x,y);
                 Vector2Int newPlayerPos = player.Simulate();
+                             //Vases can be  
+                foreach(Stationary entity in stationary)
+                {
+                    if(entity.pos.Equals(new Vector2Int(closestX,closestY)))
+                    {
+                        //Mouse trap
+                        if(entity.type == StationaryType.Wall)
+                        {
+                            gameOver = true;
+                        }
+                        else if (entity.type == StationaryType.Table)
+                        {
+                            entity.Interact();
+                        }
+                        else if (entity.type == StationaryType.Vase)
+                        {
+                            entity.Interact();
+                            //TODO collect key
+                        }
+                        else if (entity.type == StationaryType.Exit)
+                        {
+                            Debug.Log("WOn "+entity);
+                            gameWon = true;
+                        }
+                        //Based on Type of stationary INteract has different effects;
+                    }     
+                }
 
                 //Assuming no Overlap between moving entities
                 //Assuming moving entities can step over stationary

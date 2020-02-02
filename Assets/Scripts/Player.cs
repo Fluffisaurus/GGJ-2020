@@ -31,7 +31,7 @@ public class Player : Entity
             gameObject.GetComponent<SpriteRenderer>().sprite = rat_imgs[3];
         }
     }
-    
+
     internal override Vector2Int Simulate()
     {
         int size = FindObjectOfType<GridObject>().size;
@@ -44,7 +44,7 @@ public class Player : Entity
         
         foreach(Stationary stationary in stationaries)
         {
-            if(newPos.Equals(stationary.pos))
+            if(newPos.Equals(stationary.pos) && !stationary.passable)
             {
                 Debug.Log("Stationary!");
                 return pos;

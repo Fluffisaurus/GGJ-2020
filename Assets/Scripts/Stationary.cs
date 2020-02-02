@@ -15,7 +15,7 @@ public class Stationary : Entity
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(tableImgs.Length);
+        //Debug.Log(tableImgs.Length);
     }
 
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class Stationary : Entity
                 //TODO Table flipped here
                 gameObject.GetComponent<SpriteRenderer>().sprite = tableImgs[1];
             }else {
-                gameObject.GetComponent<SpriteRenderer>().sprite = tableImgs[0];
+               // gameObject.GetComponent<SpriteRenderer>().sprite = tableImgs[0];
             }
         }
         if(type == StationaryType.Vase)

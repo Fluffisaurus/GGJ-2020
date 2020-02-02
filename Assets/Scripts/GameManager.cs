@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour
                     else if (entity.type == StationaryType.Table)
                     {
                         entity.Interact();
-                        //TODO flip it
                     }
                     else if (entity.type == StationaryType.Vase)
                     {

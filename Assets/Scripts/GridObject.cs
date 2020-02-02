@@ -32,13 +32,13 @@ public class GridObject : MonoBehaviour
         String[] data = File.ReadAllText("Assets/Resources/testLevel.txt").Split(seps);
         size = (int)Math.Sqrt(data.Length);
         String[,] symbols = new String[size, size];
-        Debug.Log(data.Length);
+        //Debug.Log(data.Length);
 
         //put 1D array into 2D array
         for (int k = 0; k < symbols.GetLength(0); k++){
             for (int l = 0; l < symbols.GetLength(1); l++){
                 symbols[l, k] = data[k*size+l];
-                Debug.Log(symbols[k,l]);
+                //Debug.Log(symbols[k,l]);
             }
         }
 
@@ -129,7 +129,7 @@ public class GridObject : MonoBehaviour
                     case "N": //null
                         break;
                     default:
-                        Debug.Log("shit dun exist fam");
+                        //Debug.Log("shit dun exist fam");
                         break;
                 }
                 if(!(currObj is null)){

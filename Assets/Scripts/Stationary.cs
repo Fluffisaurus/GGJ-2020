@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Stationary : Entity
 {
-    private bool interactable;
-    private bool passable;
+    public bool interactable;
+    public bool passable;
     public StationaryType type;
    
     // Start is called before the first frame update
@@ -19,24 +19,20 @@ public class Stationary : Entity
     {
         
     }
-    public bool Interact()
+    public void Interact()
     {
-        if(interactable)
+        if(type == StationaryType.Table)
         {
-            //assuming not passable ->  passable only
-            if(passable)
-            {
-                return false;
-            }
-            else
+            if(!passable)
             {
                 passable = true;
-                return true;
-            }          
+                //TODO Table flipped here
+            }
         }
-        else
+        if(type == StationaryType.Vase)
         {
-            return false;
+            //TODO vase destroyed here
+            
         }
 
     }

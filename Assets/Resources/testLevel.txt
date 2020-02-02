@@ -1,4 +1,0 @@
-V,N,E,N
-N,T,N,N
-CAN,N,N,N
-N,R,N,N

@@ -6,16 +6,12 @@ using System;
 
 public class GridObject : MonoBehaviour
 {
-    public static GridObject i;
-    void Awake(){
-        if(!i){
-            i = this;
-        } else {
-            Destroy(this.gameObject);
-            Debug.Log("singleton already exists.");
-        }
-    }
+    
+    public string levelName;
+    public int numMoves;
 
+
+    
     public GameObject[] stationaryObj; // Vase, Table, Wall, Exit
     public GameObject vase;
     public GameObject table;
@@ -26,10 +22,11 @@ public class GridObject : MonoBehaviour
     private GameObject[,] grid;
     public int size;
     // Start is called before the first frame update
-    void Start()
+
+    public void LoadGrid(string levelName)
     {
-        char[] seps = {',', '\n'};
-        String[] data = File.ReadAllText("Assets/Resources/testLevel.txt").Split(seps);
+ char[] seps = {',', '\n'};
+        String[] data = File.ReadAllText("Assets/Resources/"+levelName+ ".txt").Split(seps);
         size = (int)Math.Sqrt(data.Length);
         String[,] symbols = new String[size, size];
         //Debug.Log(data.Length);
@@ -110,21 +107,25 @@ public class GridObject : MonoBehaviour
                         currObj = Instantiate(vase, Vector3.zero, Quaternion.identity);
                         currObj.GetComponent<Stationary>().interactable = true;
                         currObj.GetComponent<Stationary>().passable = false;
+                        currObj.GetComponent<Stationary>().type = StationaryType.Vase;
                         break;
                     case "T":
                         currObj = Instantiate(table, Vector3.zero, Quaternion.identity);
                         currObj.GetComponent<Stationary>().interactable = true;
                         currObj.GetComponent<Stationary>().passable = false;
+                        currObj.GetComponent<Stationary>().type = StationaryType.Table;
                         break;
                     case "W":
                         currObj = Instantiate(wall, Vector3.zero, Quaternion.identity);
                         currObj.GetComponent<Stationary>().interactable = false;
                         currObj.GetComponent<Stationary>().passable = false;
+                        currObj.GetComponent<Stationary>().type = StationaryType.Wall;
                         break;
                     case "E":
                         currObj = Instantiate(exit, Vector3.zero, Quaternion.identity);
                         currObj.GetComponent<Stationary>().interactable = true;
                         currObj.GetComponent<Stationary>().passable = true;
+                        currObj.GetComponent<Stationary>().type = StationaryType.Exit;
                         break;
                     case "N": //null
                         break;
@@ -166,6 +167,10 @@ public class GridObject : MonoBehaviour
         movingObj.GetComponent<Moving>().direction = Vector2Int.up;
         movingObj.GetComponent<Moving>().pos  = new Vector2Int(0,2);
         */
+    }
+    void Start()
+    {
+        LoadGrid(levelName);
     }
 
     // Update is called once per frame

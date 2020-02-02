@@ -43,21 +43,21 @@ public class Moving : Entity
             }
         }
     }
-    
+
     internal void SwitchDirection()
     {
-        
+
         //direction change
-        
+
         if (active) {
-            direction = direction * -1; 
+            direction = direction * -1;
             SwitchImages();
         }
 
     }
     internal override Vector2Int Simulate()
     {
-        int size = GridObject.i.size;
+        int size = FindObjectOfType<GridObject>().size;
         Vector2Int newPos =  pos + direction;
         if(active){
             if(newPos.x < 0 || newPos.x >= size || newPos.y < 0 || newPos.y >= size)

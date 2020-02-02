@@ -15,7 +15,7 @@ public class Entity : MonoBehaviour
     {
         Debug.Log(newPos);
         this.gameObject.transform.parent = grid[newPos.y,newPos.x].transform;
-        this.gameObject.transform.localPosition = Vector3.zero;
+        this.gameObject.transform.localPosition = Vector3.zero; //TODO: tweening between move
         this.pos = newPos;
     }
 }

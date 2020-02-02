@@ -98,11 +98,25 @@ public class GameManager : MonoBehaviour
                         else if (entity.type == StationaryType.Exit)
                         {
                             Debug.Log("Exiting");
-                            if(gridObject.numPickups >= gridObject.maxNumPickups)
+
+                            //check if all the vases are repaired. if not, exit this condition
+                            List<Stationary> vases = stationary.FindAll(v => v.GetComponent<Stationary>().type == StationaryType.Vase);
+                            int vase2FixCounter = 0;
+                            foreach(Stationary vase in vases){
+                                if(vase.interactable == false){
+                                    vase2FixCounter++;
+                                }
+                            }
+                            if(vase2FixCounter > 0){
+                                break;
+                            }
+
+                            if(gridObject.numPickups >= gridObject.maxNumPickups
+                            && stationary.Find(s => s.GetComponent<Stationary>().type == StationaryType.Exit).interactable == true)
                             {
                                 Debug.Log("WOn "+entity);
                                 gameWon = true;
-                            }              
+                            }
                         }
                         //Based on Type of stationary INteract has different effects;
                     }

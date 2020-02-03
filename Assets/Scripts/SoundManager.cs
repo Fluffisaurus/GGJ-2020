@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-
     static public SoundManager i;
     private void Awake()
     {
@@ -12,11 +11,13 @@ public class SoundManager : MonoBehaviour
         {
             i = this;
             DontDestroyOnLoad(gameObject);
+           
         }
         else
         {
             Destroy(gameObject);
         }
+
     }
 
 }

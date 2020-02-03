@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 using System;
 using UnityEngine.Assertions;
-
+using UnityEngine.Networking;
 public class GridObject : MonoBehaviour
 {
     public string levelName;
@@ -23,13 +23,17 @@ public class GridObject : MonoBehaviour
     public int size;
     // Start is called before the first frame update
 
-    public string filePath;
+    //public string filePath;
 
 
-    public void LoadGrid(string levelName)
+    public void LoadGrid(int levelName)
     {
+        
+         //TextAsset charDataFile = bundle.LoadAsset("dataFile.txt") as TextAsset;
+
         char[] seps = {',', '\n'};
-        String[] data = File.ReadAllText(filePath).Split(seps);
+        //String[] data = File.ReadAllText(filePath).Split(seps);
+        String[] data = levels[levelName-1];//text.Split(seps);
         // TextAsset stuff = Resources.Load("Assets/Resources/" + levelName + ".txt") as TextAsset;
         // String[] data = stuff.text.Split(seps);
         size = (int)Math.Sqrt(data.Length);
@@ -175,14 +179,28 @@ public class GridObject : MonoBehaviour
         */
     }
 
+    public static List<string[]> levels = new List<string[]>();
+
     void Awake(){
-        filePath = System.IO.Path.Combine(Application.persistentDataPath, "Assets/Resources");
-        filePath = System.IO.Path.Combine(filePath , levelName + ".txt");
+        //filePath = System.IO.Path.Combine(Application.streamingAssetsPath);
+        //string filePath = System.IO.Path.Combine(Application.streamingAssetsPath , levelName + ".txt");
+     
+        Assert.IsTrue(numMoves > 0);
+        levels.Add(new string[]{"N","V","E","N","N","N","N","R","N"});
+        levels.Add(new string[]{"N","N","V","E","N","N","N","N","W","W","T","N","R","N","N","N"});
+        levels.Add(new string[]{"V","E","V","N","N","N","T","N","T","W","T","N","N","N","N","R"});
+        levels.Add(new string[]{"N","N","W","W","N","N","R","N","N","N","N","N","E","CAE","N","V"});
+        levels.Add(new string[]{"N","N","CSS","N","V","N","N","N","N","N","N","N","N","N","N","CAS","N","N","N","N","E","W","R","CSN","V"});
+        levels.Add(new string[]{"V","N","N","N","N","N","E","V","N","N","CSS","N","CSN","N","R","CSN"});
+
+
+        LoadGrid(SceneChanger.i.current);
+
+
     }
     void Start()
     {
-        LoadGrid(levelName);
-        Assert.IsTrue(numMoves > 0);
+       
     }
 
     // Update is called once per frame

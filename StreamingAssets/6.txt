@@ -1,0 +1,4 @@
+V,N,N,N
+N,N,E,V
+N,N,CSS,N
+CSN,N,R,CSN

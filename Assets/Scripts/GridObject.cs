@@ -11,7 +11,7 @@ public class GridObject : MonoBehaviour
     public int numMoves;
     public int maxNumPickups;
     public int numPickups;
-    
+
     public GameObject[] stationaryObj; // Vase, Table, Wall, Exit
     public GameObject vase;
     public GameObject table;
@@ -23,10 +23,15 @@ public class GridObject : MonoBehaviour
     public int size;
     // Start is called before the first frame update
 
+    public string filePath;
+
+
     public void LoadGrid(string levelName)
     {
         char[] seps = {',', '\n'};
-        String[] data = File.ReadAllText("Assets/Resources/"+levelName+ ".txt").Split(seps);
+        String[] data = File.ReadAllText(filePath).Split(seps);
+        // TextAsset stuff = Resources.Load("Assets/Resources/" + levelName + ".txt") as TextAsset;
+        // String[] data = stuff.text.Split(seps);
         size = (int)Math.Sqrt(data.Length);
         String[,] symbols = new String[size, size];
         //Debug.Log(data.Length);
@@ -168,6 +173,11 @@ public class GridObject : MonoBehaviour
         movingObj.GetComponent<Moving>().direction = Vector2Int.up;
         movingObj.GetComponent<Moving>().pos  = new Vector2Int(0,2);
         */
+    }
+
+    void Awake(){
+        filePath = System.IO.Path.Combine(Application.persistentDataPath, "Assets/Resources");
+        filePath = System.IO.Path.Combine(filePath , levelName + ".txt");
     }
     void Start()
     {
